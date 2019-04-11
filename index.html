@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Filtro 1</title>
+    <link rel="stylesheet" href="filtro1.css">
+    <script src="filtro1.js"></script>
+  </head>
+  <body onload="main();">
+    <p>Imagen original</p>
+    <img src="black-hole.jpg" id="imagesrc">
+    <p>Imagen manipulada</p>
+    <canvas id="display"></canvas><br>
+    <input type="range" id="rojo" min="0" max="255" value="255">ROJO<br>
+    <input type="range" id="verde" min="0" max="255" value="255"/>VERDE<br>
+    <input type="range" id="azul" min="0" max="255" value="255"/>AZUL<br>
+    <input type="range" id="trans" min="0" max="255" value="255"/>TRANSPARENCIA<br>
+    <p id="range_value">00</p>
+  </body>
+</html>
