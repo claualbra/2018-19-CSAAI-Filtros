@@ -12,8 +12,7 @@ function main() {
   verde = document.getElementById('verde')
   azul = document.getElementById('azul')
   trans = document.getElementById('trans')
-  //-- Valor del rojo
-  range_value = document.getElementById('range_value')
+
   gris = document.getElementById('gris');
   colores = document.getElementById('colores');
 
@@ -31,9 +30,10 @@ function main() {
   ctx.drawImage(img, 0,0);
   var imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
   //-- Obtener el umbral de rojo del desliador
-
+  var estado = 'inicial';
   function print_img(data){
     umbral_rojo = rojo.value
+    console.log(rojo.value);
     umbral_verde = verde.value
     umbral_azul = azul.value
     umbral_trans = trans.value
@@ -51,26 +51,14 @@ function main() {
         data[i+3] = umbral_trans;
       }
     }
+    ctx.putImageData(imgData, 0, 0);
   }
-  function filtro(type){
-   if (type == 'gris') {
-     ctx.drawImage(img, 0,0);
-     var imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-     var data = imgData.data;
-     for (var i = 0; i < data.length; i+=4) {
-       var r = data[i];
-       var g = data[i+1];
-       var b = data[i+3];
-       brillo = (3 * r + 4 * g + b)/8
-       data[i] = data[i+1] = data[i+2] = brillo;
-     }
-     ctx.putImageData(imgData, 0, 0);
-   } else {
+  function filtro(estado){
+   if ( estado == 'color') {
      ctx.drawImage(img_original, 0,0);
      //-- Funcion de retrollamada del rojo
      rojo.oninput = () => {
-       //-- Mostrar el nuevo valor del rojo
-       range_value.innerHTML = rojo.value
+       console.log(estado);
        //-- Situar la imagen original en el canvas
        //-- No se han hecho manipulaciones todavia
        ctx.drawImage(img, 0,0);
@@ -103,12 +91,32 @@ function main() {
        print_img(data)
        ctx.putImageData(imgData, 0, 0);
      }
+   } else {
+     ctx.drawImage(img, 0,0);
+     var imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+     var data = imgData.data;
+     rojo.value = 255;
+     azul.value = 255;
+     verde.value = 255;
+     trans.value = 255;
+     for (var i = 0; i < data.length; i+=4) {
+       var r = data[i];
+       var g = data[i+1];
+       var b = data[i+3];
+       brillo = (3 * r + 4 * g + b)/8
+       data[i] = data[i+1] = data[i+2] = brillo;
+     }
+     ctx.putImageData(imgData, 0, 0);
+     estado = 'gris'
    }
   }
   colores.onclick=()=>{
-    filtro('color');
+    estado = 'color';
+    filtro(estado);
   }
   gris.onclick=()=>{
-    filtro('gris');
+    estado = 'gris';
+    filtro(estado);
   }
+  console.log(estado);
 }
