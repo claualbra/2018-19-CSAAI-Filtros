@@ -15,6 +15,11 @@ function main() {
   //Acceso a los botones de los filtros de color y grises.
   gris = document.getElementById('gris');
   colores = document.getElementById('colores');
+  //valores de los colores y transparencia
+  range_rojo = document.getElementById('range_rojo')
+  range_verde = document.getElementById('range_verde')
+  range_azul = document.getElementById('range_azul')
+  range_trans = document.getElementById('range_trans')
   //-- Se establece como tamaño del canvas el mismo
   //-- que el de la imagen original
   canvas.width = img.width;
@@ -57,6 +62,7 @@ function main() {
      ctx.drawImage(img_original, 0,0);
      //-- Funcion de retrollamada del rojo
      rojo.oninput = () => {
+       range_rojo.innerHTML = rojo.value
        //-- Situar la imagen original en el canvas
        //-- No se han hecho manipulaciones todavia
        ctx.drawImage(img, 0,0);
@@ -69,6 +75,7 @@ function main() {
        ctx.putImageData(imgData, 0, 0);
      }
      verde.oninput = () => {
+       range_verde.innerHTML = verde.value
        ctx.drawImage(img, 0,0);
        var imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
        var data = imgData.data
@@ -76,6 +83,7 @@ function main() {
        ctx.putImageData(imgData, 0, 0);
      }
      azul.oninput = () => {
+       range_azul.innerHTML = azul.value
        ctx.drawImage(img, 0,0);
        var imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
        var data = imgData.data
@@ -83,6 +91,7 @@ function main() {
        ctx.putImageData(imgData, 0, 0);
      }
      trans.oninput = () => {
+       range_trans.innerHTML = trans.value
        ctx.drawImage(img, 0,0);
        var imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
        var data = imgData.data

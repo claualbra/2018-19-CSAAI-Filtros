@@ -12,10 +12,20 @@
     <p>Imagen manipulada</p>
     <canvas id="display"></canvas><br>
     <div id="deslizadores">
-      <input type="range" id="rojo" min="0" max="255" value="255">ROJO<br>
-      <input type="range" id="verde" min="0" max="255" value="255"/>VERDE<br>
-      <input type="range" id="azul" min="0" max="255" value="255"/>AZUL<br>
-      <input type="range" id="trans" min="0" max="255" value="255"/>TRANSPARENCIA<br>
+      <div>
+        <input type="range" id="rojo" min="0" max="255" value="255">ROJO
+        <span id="range_rojo">255</span>
+      </div>
+      <div>
+        <input type="range" id="verde" min="0" max="255" value="255"/>VERDE
+        <span id="range_verde">255</span>
+      </div>
+      <div>
+        <input type="range" id="azul" min="0" max="255" value="255"/>AZUL
+        <span id="range_azul">255</span>
+      </div>
+      <input type="range" id="trans" min="0" max="255" value="255"/>TRANSPARENCIA
+      <span id="range_trans">255</span>
     </div>
     <button type="button" id="gris">Escala de Grises</button>
     <button type="button" id="colores">Filtro Colores</button>
