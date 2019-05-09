@@ -2,6 +2,7 @@ body {
     background-color: #000;
     font-family: 'Roboto',sans-serif;
     background: linear-gradient(180deg,#DB302A 0%,#62186B 100%) no-repeat;
+    text-align: center;
 }
 .texto{
   font-size: 30px;
